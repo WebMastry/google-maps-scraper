@@ -254,18 +254,19 @@ console.log(chalk.blue(`Searching for query: ${searchQuery}`));
           data.address = addressElement ? addressElement.textContent : null;
 
           // Extracting the Phone Number
-          const phoneElement = document.querySelector(
-            '[aria-label^="Telefon:"]'
+          const phoneElements = document.querySelectorAll(".CsEnBe");
+          const phoneElement = Array.from(phoneElements).find((element) =>
+            element.textContent?.includes("")
           );
           data.phone = phoneElement ? phoneElement.textContent : null;
           data.phone = data.phone.replace("", "");
 
           // Extracting the Website URL
-          const websiteElement = document.querySelectorAll(".CsEnBe");
+          const websiteElements = document.querySelectorAll(".CsEnBe");
 
           //add all website urls to an array
           let websiteUrls: any = [];
-          websiteElement.forEach((element: any) => {
+          Array.from(websiteElements).forEach((element: any) => {
             if (element?.href) websiteUrls.push(element?.href);
           });
 
